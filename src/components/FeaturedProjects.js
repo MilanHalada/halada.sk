@@ -1,7 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './FeaturedProjects.css';
 
 const FeaturedProjects = () => {
+  const [galleryState, setGalleryState] = useState({
+    isOpen: false,
+    images: [],
+    currentIndex: 0,
+    projectTitle: ''
+  });
+
+  const openGallery = (images, projectTitle) => {
+    setGalleryState({
+      isOpen: true,
+      images: images.filter(img => img.startsWith('/')), // Only show actual images, not emojis
+      currentIndex: 0,
+      projectTitle
+    });
+  };
+
+  const closeGallery = () => {
+    setGalleryState({
+      isOpen: false,
+      images: [],
+      currentIndex: 0,
+      projectTitle: ''
+    });
+  };
+
+  const nextImage = () => {
+    setGalleryState(prev => ({
+      ...prev,
+      currentIndex: (prev.currentIndex + 1) % prev.images.length
+    }));
+  };
+
+  const prevImage = () => {
+    setGalleryState(prev => ({
+      ...prev,
+      currentIndex: prev.currentIndex === 0 ? prev.images.length - 1 : prev.currentIndex - 1
+    }));
+  };
+
+  const handleKeyDown = (e) => {
+    if (!galleryState.isOpen) return;
+    
+    switch(e.key) {
+      case 'Escape':
+        closeGallery();
+        break;
+      case 'ArrowLeft':
+        prevImage();
+        break;
+      case 'ArrowRight':
+        nextImage();
+        break;
+      default:
+        break;
+    }
+  };
+
+  // Add keyboard event listener
+  React.useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [galleryState.isOpen]);
+
   const projects = [
     {
       id: 'smartbooks',
@@ -82,7 +145,9 @@ const FeaturedProjects = () => {
                         <img 
                           src={image} 
                           alt={`${project.title} screenshot ${imgIndex + 1}`}
-                          className="project-image"
+                          className="project-image clickable"
+                          onClick={() => openGallery(project.images, project.title)}
+                          title="Click to view gallery"
                         />
                       ) : (
                         <div className="project-icon" style={{ backgroundColor: project.color }}>
@@ -130,6 +195,53 @@ const FeaturedProjects = () => {
           ))}
         </div>
       </div>
+
+      {/* Image Gallery Modal */}
+      {galleryState.isOpen && (
+        <div className="gallery-modal" onClick={closeGallery}>
+          <div className="gallery-content" onClick={(e) => e.stopPropagation()}>
+            <div className="gallery-header">
+              <h3>{galleryState.projectTitle} - Screenshots</h3>
+              <button className="gallery-close" onClick={closeGallery}>&times;</button>
+            </div>
+            
+            <div className="gallery-main">
+              <button className="gallery-nav gallery-prev" onClick={prevImage}>
+                &#8249;
+              </button>
+              
+              <div className="gallery-image-container">
+                <img 
+                  src={galleryState.images[galleryState.currentIndex]} 
+                  alt={`${galleryState.projectTitle} screenshot ${galleryState.currentIndex + 1}`}
+                  className="gallery-image"
+                />
+              </div>
+              
+              <button className="gallery-nav gallery-next" onClick={nextImage}>
+                &#8250;
+              </button>
+            </div>
+            
+            <div className="gallery-footer">
+              <div className="gallery-counter">
+                {galleryState.currentIndex + 1} / {galleryState.images.length}
+              </div>
+              <div className="gallery-thumbnails">
+                {galleryState.images.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`Thumbnail ${index + 1}`}
+                    className={`gallery-thumbnail ${index === galleryState.currentIndex ? 'active' : ''}`}
+                    onClick={() => setGalleryState(prev => ({ ...prev, currentIndex: index }))}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
