@@ -44,7 +44,7 @@
 
 .about-skills {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   margin-bottom: 2.5rem;
 }
@@ -83,9 +83,15 @@
   align-items: center;
 }
 
-.image-placeholder {
+.profile-image-container {
+  position: relative;
   width: 300px;
   height: 300px;
+}
+
+.profile-image-placeholder {
+  width: 100%;
+  height: 100%;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 50%;
   display: flex;
@@ -94,6 +100,27 @@
   align-items: center;
   color: white;
   box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+}
+
+.profile-image-placeholder:hover {
+  transform: scale(1.05);
+  box-shadow: 0 25px 50px rgba(102, 126, 234, 0.4);
+}
+
+/* If a real profile image is added, use this style */
+.profile-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+}
+
+.profile-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 25px 50px rgba(102, 126, 234, 0.4);
 }
 
 .placeholder-content {
@@ -123,7 +150,7 @@
   }
   
   .about-skills {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .about-actions {
@@ -145,8 +172,12 @@
     align-items: center;
   }
   
-  .image-placeholder {
+  .profile-image-container {
     width: 250px;
     height: 250px;
+  }
+  
+  .about-skills {
+    grid-template-columns: 1fr;
   }
 }

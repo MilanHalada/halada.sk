@@ -12,13 +12,16 @@ const FeaturedProjects = () => {
       technologies: ['.NET Core', 'React', 'AI Integration', 'Azure', 'SQL Server'],
       features: [
         'Intuitive content creation and editing tools',
-        'AI-powered content recommendations',
+        'AI-powered content creation',
         'Multi-media support (videos, images, documents)',
         'Advanced analytics and reporting',
-        'User role management and permissions',
-        'Responsive design for all devices'
+        'User role management and permissions'
       ],
-      image: '📚',
+      images: [
+        '/images/smartbooks/editor.png',
+        '/images/smartbooks/material.png', 
+        '/images/smartbooks/quality.png'
+      ],
       color: '#667eea'
     },
     {
@@ -31,12 +34,14 @@ const FeaturedProjects = () => {
       features: [
         'Employee lifecycle management',
         'Resource allocation and tracking',
-        'Real-time collaboration tools',
         'Advanced reporting and analytics',
-        'Automated workflow management',
-        'Integration with external HR systems'
+        'Automated workflow management'
       ],
-      image: '👥',
+      images: [
+        '/images/beri/dashboard.png',
+        '/images/beri/planning.png',
+        '/images/beri/table.png'
+      ],
       color: '#764ba2'
     },
     {
@@ -45,16 +50,15 @@ const FeaturedProjects = () => {
       subtitle: 'Google Ads Administration System',
       description: 'A specialized system for managing and optimizing Google Ads campaigns. Provides comprehensive tools for campaign management, performance tracking, and optimization.',
       longDescription: 'BlueWinston is a cutting-edge platform designed to simplify and enhance Google Ads management. The system automates routine tasks, provides intelligent insights, and offers advanced optimization tools to maximize campaign performance and ROI.',
-      technologies: ['.NET', 'Angular', 'Google Ads API', 'Azure', 'Machine Learning'],
+      technologies: ['.NET', 'Angular', 'Google Ads API'],
       features: [
         'Automated campaign management',
         'Real-time performance monitoring',
-        'AI-powered optimization suggestions',
         'Budget allocation and bidding strategies',
         'Comprehensive reporting dashboard',
         'Multi-account management'
       ],
-      image: '📊',
+      images: ['📊'], // Keep emoji for BlueWinston as no images provided
       color: '#f093fb'
     }
   ];
@@ -71,8 +75,22 @@ const FeaturedProjects = () => {
           {projects.map((project, index) => (
             <div key={project.id} className="project-card">
               <div className="project-header">
-                <div className="project-icon" style={{ backgroundColor: project.color }}>
-                  <span>{project.image}</span>
+                <div className="project-images">
+                  {project.images.map((image, imgIndex) => (
+                    <div key={imgIndex} className="project-image-container">
+                      {image.startsWith('/') ? (
+                        <img 
+                          src={image} 
+                          alt={`${project.title} screenshot ${imgIndex + 1}`}
+                          className="project-image"
+                        />
+                      ) : (
+                        <div className="project-icon" style={{ backgroundColor: project.color }}>
+                          <span>{image}</span>
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
                 <div className="project-title-section">
                   <h3 className="project-title">{project.title}</h3>

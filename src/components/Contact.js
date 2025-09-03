@@ -10,18 +10,6 @@ const Contact = () => {
       link: 'mailto:milan.halada@gmail.com'
     },
     {
-      icon: '📱',
-      label: 'Phone',
-      value: '+421 915 778 305',
-      link: 'tel:+421915778305'
-    },
-    {
-      icon: '📍',
-      label: 'Location',
-      value: 'Malženice 357, Malženice',
-      link: 'https://maps.google.com/?q=Malženice+357,+Malženice'
-    },
-    {
       icon: '💼',
       label: 'LinkedIn',
       value: 'milan-halada-a483254a',

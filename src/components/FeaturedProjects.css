@@ -40,6 +40,32 @@
   gap: 1.5rem;
 }
 
+.project-images {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.project-image-container {
+  position: relative;
+}
+
+.project-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 2px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.project-image:hover {
+  transform: scale(1.1);
+  border-color: #667eea;
+  z-index: 10;
+  position: relative;
+}
+
 .project-icon {
   width: 60px;
   height: 60px;
@@ -178,6 +204,11 @@
   
   .project-footer {
     padding: 1rem 1.5rem 1.5rem 1.5rem;
+  }
+  
+  .project-image {
+    width: 50px;
+    height: 50px;
   }
   
   .project-icon {

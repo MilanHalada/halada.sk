@@ -26,8 +26,16 @@ const About = () => {
                 <span>React, Angular, Vue.js, TypeScript</span>
               </div>
               <div className="skill-category">
+                <h4>Databases</h4>
+                <span>MS SQL Server, PostgreSQL, MongoDB</span>
+              </div>
+              <div className="skill-category">
                 <h4>Cloud & DevOps</h4>
                 <span>Azure, Docker, Kubernetes</span>
+              </div>
+              <div className="skill-category">
+                <h4>Tools & Version Control</h4>
+                <span>Git, Postman, SonarQube, Fiddler, Jira</span>
               </div>
               <div className="skill-category">
                 <h4>AI & Integration</h4>
@@ -40,10 +48,12 @@ const About = () => {
             </div>
           </div>
           <div className="about-image">
-            <div className="image-placeholder">
-              <div className="placeholder-content">
-                <span>👨‍💻</span>
-                <p>Professional Photo</p>
+            <div className="profile-image-container">
+              <div className="profile-image-placeholder">
+                <div className="placeholder-content">
+                  <span>👨‍💻</span>
+                  <p>Milan Halada</p>
+                </div>
               </div>
             </div>
           </div>
