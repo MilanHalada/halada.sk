@@ -123,6 +123,23 @@ const FeaturedProjects = () => {
       ],
       images: ['📊'], // Keep emoji for BlueWinston as no images provided
       color: '#f093fb'
+    },
+    {
+      id: 'ias',
+      title: 'iAS',
+      subtitle: 'Automotive Microservices Platform',
+      description: 'Designed and implemented new microservices extending an incadea-based application for the automotive industry, improving modularity and scalability of the dealer management ecosystem.',
+      longDescription: 'iAS involved architecting and building microservices that integrate with the incadea DMS platform used in automotive retail and service. The work focused on clean service boundaries, reliable data access, and containerized deployment to support evolving business requirements in a regulated, high-volume environment.',
+      technologies: ['.NET', 'Docker', 'PostgreSQL', 'Entity Framework', 'Microservices', 'incadea'],
+      features: [
+        'Microservice architecture design and implementation',
+        'Integration with incadea-based dealer management system',
+        'Containerized deployment with Docker',
+        'Relational data modeling with PostgreSQL and Entity Framework',
+        'Automotive retail and service domain workflows'
+      ],
+      images: ['🚗'],
+      color: '#43e97b'
     }
   ];
 
